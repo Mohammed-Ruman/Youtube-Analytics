@@ -27,10 +27,10 @@ import java.util.Collections;
 public class GoogleApiClientConfig {
 
 
-    private String clientId="395984574591-9kke6itrgu6cg1he4e6na63li9l0csga.apps.googleusercontent.com";
+    private String clientId=Your_Client_id;
 
 
-    private String clientSecret="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";
+    private String clientSecret=Client_secret;
 
 
     private String redirectUri="http://localhost:9090/oauth2callback";
