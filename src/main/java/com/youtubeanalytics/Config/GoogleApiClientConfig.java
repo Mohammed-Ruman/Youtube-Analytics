@@ -32,6 +32,7 @@ public class GoogleApiClientConfig {
     @Value("${spring.security.oauth2.client.registration.google.client-secret}")
     private String clientSecret;
     private String redirectUri = "http://localhost:9090/oauth2/callback";
+
     private final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
     @Bean
