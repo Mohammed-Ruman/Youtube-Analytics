@@ -26,32 +26,23 @@ import java.util.Collections;
 @Configuration
 public class GoogleApiClientConfig {
 
+    @Value("${spring.security.oauth2.client.registration.google.client-id}")
+    private String clientId;
 
-    private String clientId="395984574591-9kke6itrgu6cg1he4e6na63li9l0csga.apps.googleusercontent.com";
-
-
-    private String clientSecret="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";
-
-
-    private String redirectUri="http://localhost:9090/oauth2callback";
-
+    @Value("${spring.security.oauth2.client.registration.google.client-secret}")
+    private String clientSecret;
+    private String redirectUri = "http://localhost:9090/oauth2/callback";
     private final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
     @Bean
     public AuthorizationCodeFlow googleAuthorizationCodeFlow(HttpTransport httpTransport) throws IOException {
-        //InputStream in = getClass().getResourceAsStream("client_secret.json");
-        //GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-
-
-        Details details=new Details();
+        Details details = new Details();
         details.setClientId(clientId);
         details.setClientSecret(clientSecret);
         details.setRedirectUris(Collections.singletonList(redirectUri));
 
-        GoogleClientSecrets clientSecrets=new GoogleClientSecrets();
+        GoogleClientSecrets clientSecrets = new GoogleClientSecrets();
         clientSecrets.setInstalled(details);
-
-
 
         GoogleAuthorizationCodeFlow.Builder builder =
                 new GoogleAuthorizationCodeFlow.Builder(
@@ -69,6 +60,6 @@ public class GoogleApiClientConfig {
 
     @Bean
     public LocalServerReceiver localServerReceiver() {
-        return new LocalServerReceiver.Builder().setPort(8080).build();
+        return new LocalServerReceiver.Builder().setPort(9090).build();
     }
 }
